@@ -50,19 +50,18 @@ print(tag_name, confidence)
 
 
 class SendEmail_class:
-    def __init__(self, DOMAIN, API_KEY_EMAIL, EMAIL_ADDRESS, TEXT, SUBJECT):
-        self.DOMAIN = DOMAIN
-        self.API_KEY_EMAIL = API_KEY_EMAIL
-        self.EMAIL_ADDRESS = EMAIL_ADDRESS
-        self.TEXT = TEXT
-        self.SUBJECT = SUBJECT
+    def __init__(self):
+        self.DOMAIN = "sandbox946608aa307241419f0a093a1fdd500c.mailgun.org"
+        self.API_KEY_EMAIL = "818378731d5374cd733ec4f5c5abf6c4-48c092ba-a51fd35d"
+        # self.EMAIL_ADDRESS = EMAIL_ADDRESS
+        # self.TEXT = TEXT
+        # self.SUBJECT = SUBJECT
 
-    @staticmethod
-    def send_simple_message(email, subject, text):
+    def send_simple_message(self, email, subject, text):
         return requests.post(
-            f"https://api.mailgun.net/v3/{DOMAIN}/messages",
+            f"https://api.mailgun.net/v3/{self.DOMAIN}/messages",
             auth=("api", API_KEY_EMAIL),
-            data={"from": f"<mailgun@{DOMAIN}>",
+            data={"from": f"<mailgun@{self.DOMAIN}>",
                   "to": [email],
                   "subject": subject,
                   "text": text})
@@ -74,54 +73,15 @@ class SendEmail_class:
         return response.json()
 
 
-class RABBIT:
-    _channel = None
-
-    @classmethod
-    def channel(cls):
-        if cls._channel is None:
-            params = pika.URLParameters(AMQP_URL)
-            Connection = pika.BlockingConnection(params)
-            cls._channel = Connection.channel()
-            cls._channel.queue_declare(queue='posts')
-        return cls._channel
-
-    @classmethod
-    def publish(cls, post_id: int):
-        channel = cls.channel()  # type: pika.adapters.blocking_connection.BlockingChannel
-        cls.channel().basic_publish(
-            exchange='', routing_key='posts', body=json.dumps({'post_id': post_id}))
-        print(f'Post <{post_id}> has been sent to the queue')
-
-
- 
-class Post:
-    def __init__(self, post_id: int):
-        self.post_id = post_id
-
-    def publish(self):
-        RABBIT.publish(self.post_id)
-
-
-email_response = SendEmail_class(
-    DOMAIN, API_KEY_EMAIL, EMAIL_ADDRESS, TEXT, SUBJECT).send_response()
-
-print(email_response)
-# post = Post(1)
-# print(post.publish())
-
-# print(image.tagging_obj())
-
-
 class S3:
     def __init__(self, bucket_name, file_name, object_name=None):
         self.bucket_name = bucket_name
         self.file_name = file_name
         self.object_name = object_name
-        
+
     def upload_file(file_name, bucket, object_name=None):
 
-    # If S3 object_name was not specified, use file_name
+        # If S3 object_name was not specified, use file_name
         if object_name is None:
             object_name = os.path.basename(file_name)
 
@@ -133,6 +93,7 @@ class S3:
             logging.error(e)
             return False
         return True
+
 
 url = 'https://firstassignment.s3.ir-thr-at1.arvanstorage.com'
 s3 = S3(url, 'test.txt')
