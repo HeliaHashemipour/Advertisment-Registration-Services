@@ -21,7 +21,7 @@ SUBJECT = "Cloud Computing HW1"
 
 AMQP_URL = "amqps://vyxkmseh:xuftvWWjW2mJkjicdYCyoYp6iZMDvlJb@albatross.rmq.cloudamqp.com/vyxkmseh"
 ROUTING_KEY = "hello"
-message = 1
+# message = 1
 
 
 class ImageTagging_class:

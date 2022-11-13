@@ -53,11 +53,11 @@ class Database_class:
         # for x in mycursor:
         #     print(x)
 
-    def insert_data(self, email, description):
+    def insert_data(self, email, description,extension):
         mycursor = self.mydb.cursor()
 
-        sql = "INSERT INTO advertisement (email, description,state) VALUES (%s, %s,%d)"
-        val = (email, description, 0)
+        sql = "INSERT INTO advertisement (email, description,state,extension) VALUES (%s, %s, 0, %s)"
+        val = (email, description, extension)
         mycursor.execute(sql, val)
 
         self.mydb.commit()
@@ -98,6 +98,18 @@ class Database_class:
         sql = f"SELECT * FROM {table_name}"
         mycursor.execute(sql)
         self.mydb.commit()
+        return mycursor.fetchall()
+    
+    def select_row_by_id(self, table_name, id):
+        mycursor = self.mydb.cursor()
+
+        sql = f"SELECT * FROM advertisement WHERE id = {id}"
+        mycursor.execute(sql)
+        self.mydb.commit()
+        myresult=mycursor.fetchall()
+        
+        for x in myresult:
+            print(x)
         return mycursor.fetchall()
 
 
