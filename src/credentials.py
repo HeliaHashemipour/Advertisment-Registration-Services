@@ -10,3 +10,9 @@ SUBJECT = "Cloud Computing HW1"
 
 AMQP_URL = "amqps://vyxkmseh:xuftvWWjW2mJkjicdYCyoYp6iZMDvlJb@albatross.rmq.cloudamqp.com/vyxkmseh"
 ROUTING_KEY = "hello"
+
+DATABASE = "defaultdb"
+HOST = "mysql-285d668a-heliahashemipour2-3713.aivencloud.com"
+PORT = 24306
+USER = "avnadmin"
+PASSWORD = 'AVNS_Dw1z9L45JL5OCEl7X1G'

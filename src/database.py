@@ -19,20 +19,26 @@ create_table_advertisement = '''CREATE TABLE advertisement (
     )'''
 
 
+# DATABASE = "defaultdb"
+# HOST = "mysql-285d668a-heliahashemipour2-3713.aivencloud.com"
+# PORT = 24306
+# USER = "avnadmin"
+# PASSWORD = 'AVNS_Dw1z9L45JL5OCEl7X1G'
+
 class Database_class:
-    def __init__(self, database, host, port, user, password):
-        self.database = database
-        self.host = host
-        self.port = port
-        self.user = user
-        self.password = password
+    def __init__(self):
+        # self.database =  "defaultdb"
+        # self.host = "mysql-285d668a-heliahashemipour2-3713.aivencloud.com"
+        # self.port = 24306
+        # self.user = "avnadmin"
+        # self.password = 'AVNS_Dw1z9L45JL5OCEl7X1G'
 
         self.mydb = mysql.connector.connect(
-            database=database,
-            host=host,
-            port=port,
-            user=user,
-            password=password
+            database="defaultdb",
+            host="mysql-285d668a-heliahashemipour2-3713.aivencloud.com",
+            port=24306,
+            user="avnadmin",
+            password='AVNS_Dw1z9L45JL5OCEl7X1G'
         )
 
         # print(mydb)
@@ -66,29 +72,22 @@ class Database_class:
 
         myresult = mycursor.fetchall()
 
-    def update(self):
+    def update(self,id,state,category='None'):
         mycursor = self.mydb.cursor()
-
-        sql = "UPDATE advertisement SET (state,category) = (%s,%s) WHERE id = %d"
-
-        mycursor.execute(sql)
-
+        mycursor.execute("UPDATE advertisement SET  state = %s, category = %s WHERE id = %s", (state,category,id))
         self.mydb.commit()
-
         print(mycursor.rowcount, "record(s) affected")
 
     def delete(self, name):
         mycursor = self.mydb.cursor()
 
-        sql = f'DROP TABLE {name}  '
+        sql = f'DROP TABLE {name}'
         mycursor.execute(sql)
         self.mydb.commit()
 
     def select_all(self):
         mycursor = self.mydb.cursor()
-
-        sql = "SHOW TABLES"
-        mycursor.execute(sql)
+        mycursor.execute("SHOW TABLES")
         # self.mydb.commit()
         for x in mycursor:
             print(x)
@@ -102,16 +101,14 @@ class Database_class:
         return mycursor.fetchall()
 
 
-DATABASE = "defaultdb"
-HOST = "mysql-285d668a-heliahashemipour2-3713.aivencloud.com"
-PORT = 24306
-USER = "avnadmin"
-PASSWORD = 'AVNS_Dw1z9L45JL5OCEl7X1G'
 
-db = Database_class(database=DATABASE,
-                    host=HOST,
-                    port=PORT,
-                    user=USER,
-                    password=PASSWORD)
+
+# db = Database_class(database=DATABASE,
+#                     host=HOST,
+#                     port=PORT,
+#                     user=USER,
+#                     password=PASSWORD)
 
 # db.select_all()
+
+# db = Database_class()
