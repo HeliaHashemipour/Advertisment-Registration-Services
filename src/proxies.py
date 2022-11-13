@@ -6,6 +6,9 @@ import boto3
 from botocore.exceptions import ClientError
 import os
 
+logging.basicConfig(level=logging.INFO)
+
+
 API_KEY_IMAGE = 'acc_de10f3569b04ef6'
 API_SECRET_IMAGE = 'b1728fcb6d7f5a9ad0824c8e354e0817'
 IMAGE_URL = 'https://wallpapercave.com/wp/wp3503654.jpg'
@@ -74,28 +77,32 @@ class SendEmail_class:
 
 
 class S3:
-    def __init__(self, bucket_name, file_name, object_name=None):
-        self.bucket_name = bucket_name
-        self.file_name = file_name
-        self.object_name = object_name
+    def __init__(self):
+        self.bucket_name = "HW1-CloudComputing"
+        self. s3_client = boto3.client(
+            's3',
+            endpoint_url='https://hw1cloudcomputing.s3.ir-thr-at1.arvanstorage.com',
+            aws_access_key_id='0ad7d351-9362-4ef6-bfa5-77cc073127db',
+            aws_secret_access_key='07a983ba20fb45403e739a7cb36438536ea40cee'
+        )
 
-    def upload_file(file_name, bucket, object_name=None):
-
+    def upload_file(self, file_name, object_name=None):
         # If S3 object_name was not specified, use file_name
         if object_name is None:
             object_name = os.path.basename(file_name)
 
     # Upload the file
-        s3_client = boto3.client('s3')
+        # s3_client = boto3.client('s3')
         try:
-            response = s3_client.upload_file(file_name, bucket, object_name)
+            response = self.s3_client.upload_file(
+                file_name, self.bucket, object_name)
         except ClientError as e:
             logging.error(e)
             return False
         return True
 
 
-url = 'https://firstassignment.s3.ir-thr-at1.arvanstorage.com'
-s3 = S3(url, 'test.txt')
+# url = 'https://firstassignment.s3.ir-thr-at1.arvanstorage.com'
+# s3 = S3(url, 'test.txt')
 
-print(s3.upload_file('test.txt', url))
+# print(s3.upload_file('test.txt', url))
