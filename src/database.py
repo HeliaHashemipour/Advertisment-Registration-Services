@@ -1,5 +1,14 @@
 import mysql.connector
 
+create_table_advertisement = '''CREATE TABLE advertisement (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    description VARCHAR(255),  
+    email VARCHAR(255),
+    state INT NOT NULL,
+    category VARCHAR(255) ,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )'''
+
 
 class database_class(): 
     def __init__(self, database, host, port, user, password):
@@ -17,28 +26,29 @@ class database_class():
             password=password
         )
 
-        # print(mydb)  
-
+        # print(mydb)
+ 
     def create_table(self):
         mycursor = self.mydb.cursor()
         mycursor.execute(
-            "CREATE TABLE users (name VARCHAR(255) primary key, address VARCHAR(255))")
+            "CREATE TABLE advertisement (name VARCHAR(255) primary key, address VARCHAR(255))")
         mycursor = self.mydb.cursor()
         mycursor.execute("SHOW TABLES")
 
         for x in mycursor:
             print(x)
 
-    def insert_data(self):
+    def insert_data(self, email, description):
         mycursor = self.mydb.cursor()
 
-        sql = "INSERT INTO users (name, address) VALUES (%s, %s)"
-        val = ("John", "Highway 21")
+        sql = "INSERT INTO advertisement (email, description,state) VALUES (%s, %s,%d)"
+        val = (email, description, 0)
         mycursor.execute(sql, val)
 
         self.mydb.commit()
 
         print(mycursor.rowcount, "record inserted.")
+        return mycursor.lastrowid
 
     def select(self):
         mycursor = self.mydb.cursor()
@@ -49,6 +59,17 @@ class database_class():
 
         for x in myresult:
             print(x)
+
+    def update(self):
+        mycursor = self.mydb.cursor()
+
+        sql = "UPDATE advertisement SET (state,category) = (%s,%s) WHERE id = %d"
+
+        mycursor.execute(sql)
+
+        self.mydb.commit()
+
+        print(mycursor.rowcount, "record(s) affected")
 
 
 DATABASE = "defaultdb"
