@@ -22,16 +22,16 @@ message = 1
 
 
 class ImageTagging_class:
-    def __init__(self, API_KEY_IMAGE, API_SECRET_IMAGE):
-        self.API_KEY_IMAGE = API_KEY_IMAGE
-        self.API_SECRET_IMAGE = API_SECRET_IMAGE
-        self.IMAGE_URL = IMAGE_URL
+    def __init__(self):
+        self.API_KEY_IMAGE = 'acc_de10f3569b04ef6'
+        self.API_SECRET_IMAGE = 'b1728fcb6d7f5a9ad0824c8e354e0817'
+        # self.IMAGE_URL = IMAGE_URL
 
-    @staticmethod
     def tagging_obj(IMAGE_URL):
         response = requests.get(
-            'https://api.imagga.com/v2/tags?image_url=%s' % IMAGE_URL,
-            auth=(API_KEY_IMAGE, API_SECRET_IMAGE))
+            'https://api.imagga.com/v2/tags',
+            auth=(API_KEY_IMAGE, API_SECRET_IMAGE)
+        )
 
         tags = response.json()['result']['tags']
         for tag in tags:
@@ -66,9 +66,9 @@ class SendEmail_class:
                   "subject": subject,
                   "text": text})
 
-    def send_response(self):
+    def send_response(self, email, subject, text):
         response = self.send_simple_message(
-            self.EMAIL_ADDRESS, self.SUBJECT, self.TEXT)
+            email, subject, text)
         # print(response.json())
         return response.json()
 
