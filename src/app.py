@@ -21,9 +21,13 @@ def post_submit():
   description= request.form['description']
   image = request.files['image']
   
+  # print(image)
+  
   # Step 2
   image_type = image.filename.split('.')[-1]
-  id = db.insert(email=email, description=description,extension=image_type)
+  # image_type='.'+image_type
+  id = db.insert(email=email, description=description, image_type=image_type)
+  # print(image_type)
   # save image
   obj_name = f'{id}.{image_type}'
   image.save(obj_name)
@@ -42,9 +46,29 @@ def post_submit():
 
 @app.route('/post_view/', methods=['POST'])
 def post_view():
+  # Step 1
   id = request.form['id']
-  
-
+  row_state = db.select_row_by_id(id=id)[0]
+  # Step 2
+  if row_state[3]  == 0:
+    return 'Your post is still pending'
+  # Step 3
+  elif row_state[3] == 1:
+    return f'Your post is with id <{id}> is rejected'
+  # Step 4
+  else:
+  # Step 5
+    res = f'description: {row_state[1]}\n'
+    res+= f'category: {row_state[4]}\n'
+    res+= f'state: {row_state[3]}\n'
+    # res+= 
+     
+    image_type = row_state[6]
+    obj_format = f'{id}.{image_type}'
+    FILE_NAME = S3().download_file(object_name=id, image_type=image_type)
+    imge =open(FILE_NAME, 'rb')
+    
+    return send_file(imge, attachment_filename=obj_format, as_attachment=True)
 
   
   

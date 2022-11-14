@@ -16,3 +16,12 @@ HOST = "mysql-285d668a-heliahashemipour2-3713.aivencloud.com"
 PORT = 24306
 USER = "avnadmin"
 PASSWORD = 'AVNS_Dw1z9L45JL5OCEl7X1G'
+
+
+path = '/home/User/Desktop/file.txt'
+
+# image_type = path.split('.')[-1]
+# image_type='.'+image_type
+# print(image_type)
+  
+

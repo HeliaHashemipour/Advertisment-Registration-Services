@@ -30,24 +30,32 @@ class ImageTagging_class:
         self.API_SECRET_IMAGE = 'b1728fcb6d7f5a9ad0824c8e354e0817'
         # self.IMAGE_URL = IMAGE_URL
 
-    def tagging_obj(IMAGE_URL):
+    def tagging_obj(self,image_path):
         response = requests.get(
             'https://api.imagga.com/v2/tags',
-            auth=(API_KEY_IMAGE, API_SECRET_IMAGE)
-        )
-
+            auth=(self.API_KEY_IMAGE, self.API_SECRET_IMAGE),
+            files={'image': open(image_path, 'rb')})
+        is_vehicle = False
+    
         tags = response.json()['result']['tags']
+        for tag in tags:
+            if  tag['tag']['en'] == 'vehicle':
+                is_vehicle = True
+                break
+            
         for tag in tags:
             confidence = tag['confidence']
             tag_name = tag['tag']['en']
             print(f'Confidence: {confidence}, tag: {tag_name}')
+            
+        print(f'is vehicle: {is_vehicle}')
 
-        return tag_name, confidence
+        return tag_name, is_vehicle
 
 
-tag_name, confidence = ImageTagging_class(
-    API_KEY_IMAGE, API_SECRET_IMAGE).tagging_obj(IMAGE_URL)
-print(tag_name, confidence)
+# tag_name, confidence = ImageTagging_class(
+#     API_KEY_IMAGE, API_SECRET_IMAGE).tagging_obj(IMAGE_URL)
+# print(tag_name, confidence)
 
 # print(image.taggin g_obj())
 
@@ -78,31 +86,48 @@ class SendEmail_class:
 
 class S3:
     def __init__(self):
-        self.bucket_name = "HW1-CloudComputing"
-        self. s3_client = boto3.client(
+        self.bucket_name = 'hw1cloudcomputing'
+        self.s3_client = boto3.client(
             's3',
             endpoint_url='https://hw1cloudcomputing.s3.ir-thr-at1.arvanstorage.com',
-            aws_access_key_id='0ad7d351-9362-4ef6-bfa5-77cc073127db',
-            aws_secret_access_key='07a983ba20fb45403e739a7cb36438536ea40cee'
+            aws_access_key_id='6d04e8b0-645e-4a26-b9e0-128f830a36ce',
+            aws_secret_access_key='e2b5741fc6c88d35c6f6c2dc0cdcedfb84d994fa'
         )
 
     def upload_file(self, file_name, object_name=None):
         # If S3 object_name was not specified, use file_name
         if object_name is None:
             object_name = os.path.basename(file_name)
+        # print(file_name)
 
     # Upload the file
         # s3_client = boto3.client('s3')
         try:
             response = self.s3_client.upload_file(
-                file_name, self.bucket, object_name)
+                file_name, self.bucket_name, object_name)
         except ClientError as e:
             logging.error(e)
             return False
         return True
+    
+    def download_file( self, object_name, image_type):
+        # If S3 object_name was not specified, use file_name
+        # print(file_name)
+        filename = f'/Users/heliaa/University/Semester7/Cloud/PRJ1/src/{object_name}{image_type}'
+        obj_path = f'{object_name}{image_type}'
+        object_name = os.path.basename(filename)
+        self.s3_client.download_file(self.bucket_name,obj_path , filename)
+        # s3 = boto3.client('s3')
+        # with open('FILE_NAME', 'wb') as f:
+        #     s3.download_fileobj('BUCKET_NAME', 'OBJECT_NAME', f)
+        return filename
+         
+
 
 
 # url = 'https://firstassignment.s3.ir-thr-at1.arvanstorage.com'
 # s3 = S3(url, 'test.txt')
 
 # print(s3.upload_file('test.txt', url))
+# S3().upload_file('/Users/heliaa/University/Semester7/Cloud/PRJ1/src/13.jpg')
+# S3().download_file('13', '.jpg')
