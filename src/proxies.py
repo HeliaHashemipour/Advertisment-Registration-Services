@@ -1,6 +1,4 @@
 import requests
-import pika
-import json
 import logging
 import boto3
 from botocore.exceptions import ClientError
@@ -26,27 +24,38 @@ ROUTING_KEY = "hello"
 
 class ImageTagging_class:
     def __init__(self):
-        self.API_KEY_IMAGE = 'acc_de10f3569b04ef6'
-        self.API_SECRET_IMAGE = 'b1728fcb6d7f5a9ad0824c8e354e0817'
+        self.API_KEY_IMAGE = 'acc_f596c8c6fe207a0'
+        self.API_SECRET_IMAGE = 'b117d89284326d807458a878ceaa29e7'
         # self.IMAGE_URL = IMAGE_URL
 
-    def tagging_obj(self,image_path):
-        response = requests.get(
+    def tagging_obj(self, image_path):
+        # IMAGE_URL = 'https://wallpapercave.com/wp/wp3503654.jpg'
+        print(image_path)
+        # image_pathh = '/Users/heliaa/University/Semester7/Cloud/PRJ1/src/'+image_path 
+        response = requests.post(
             'https://api.imagga.com/v2/tags',
             auth=(self.API_KEY_IMAGE, self.API_SECRET_IMAGE),
-            files={'image': open(image_path, 'rb')})
+            files={'image': open(image_path, 'rb')}
+            )
+        # response = requests.get(
+        #     'https://api.imagga.com/v2/tags?image_url=%s' % IMAGE_URL,
+        #     auth=(API_KEY_IMAGE, API_SECRET_IMAGE))
+
+
+        # print(response.json())
         is_vehicle = False
         
         tags = response.json()['result']['tags']  # list of tags
+        
         for tag in tags:
             if  tag['tag']['en'] == 'vehicle':
                 is_vehicle = True  # if vehicle is in the tags, then it is a vehicle
                 break
             
-        for tag in tags: # print all tags
-            confidence = tag['confidence'] # confidence of the tag
-            tag_name = tag['tag']['en'] # tag name
-            print(f'Confidence: {confidence}, tag: {tag_name}') # print the tag and its confidence
+        tags = response.json()['result']['tags'][0]
+        confidence = tags['confidence'] # confidence of the tag
+        tag_name = tags['tag']['en'] # tag name 
+        print(f'tag: {tag_name}') # print the tag and its confidence
             
         print(f'is vehicle: {is_vehicle}') # print if it is a vehicle or not
 
@@ -58,7 +67,9 @@ class ImageTagging_class:
 # print(tag_name, confidence)
 
 # print(image.taggin g_obj())
-
+# image_path = '/Users/heliaa/University/Semester7/Cloud/PRJ1/src/44.jpg'
+# tag_name, is_vehicle=ImageTagging_class().tagging_obj(image_path)
+# print(ImageTagging_class().tagging_obj(image_path))
 
 class SendEmail_class:
     def __init__(self):

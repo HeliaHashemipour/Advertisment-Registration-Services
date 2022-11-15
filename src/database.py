@@ -78,9 +78,9 @@ class Database_class:
 
         # myresult = mycursor.fetchall()
 
-    def update(self,id,state,category='None'):
+    def update(self,id,state,category=''):
         mycursor = self.mydb.cursor(buffered=True)
-        mycursor.execute(f"UPDATE advertisement SET  state = {state}, category = {category} WHERE id = {id}")
+        mycursor.execute(f"UPDATE advertisement SET  state = {state}, category = '{category}' WHERE id = {id}")
         self.mydb.commit()
         print(mycursor.rowcount, "record(s) affected")
 
@@ -169,4 +169,4 @@ class Database_class:
 # db.select_all()
 
 # db = Database_class()
-(Database_class().select_row_by_id(32))
+(Database_class().select_row_by_id(45))
