@@ -36,19 +36,19 @@ class ImageTagging_class:
             auth=(self.API_KEY_IMAGE, self.API_SECRET_IMAGE),
             files={'image': open(image_path, 'rb')})
         is_vehicle = False
-    
-        tags = response.json()['result']['tags']
+        
+        tags = response.json()['result']['tags']  # list of tags
         for tag in tags:
             if  tag['tag']['en'] == 'vehicle':
-                is_vehicle = True
+                is_vehicle = True  # if vehicle is in the tags, then it is a vehicle
                 break
             
-        for tag in tags:
-            confidence = tag['confidence']
-            tag_name = tag['tag']['en']
-            print(f'Confidence: {confidence}, tag: {tag_name}')
+        for tag in tags: # print all tags
+            confidence = tag['confidence'] # confidence of the tag
+            tag_name = tag['tag']['en'] # tag name
+            print(f'Confidence: {confidence}, tag: {tag_name}') # print the tag and its confidence
             
-        print(f'is vehicle: {is_vehicle}')
+        print(f'is vehicle: {is_vehicle}') # print if it is a vehicle or not
 
         return tag_name, is_vehicle
 
@@ -79,7 +79,7 @@ class SendEmail_class:
 
     def send_response(self, email, subject, text):
         response = self.send_simple_message(
-            email, subject, text)
+            email, subject, text) # send email
         # print(response.json())
         return response.json()
 
@@ -97,13 +97,13 @@ class S3:
     def upload_file(self, file_name, object_name=None):
         # If S3 object_name was not specified, use file_name
         if object_name is None:
-            object_name = os.path.basename(file_name)
+            object_name = os.path.basename(file_name) # get the file name
         # print(file_name)
 
     # Upload the file
         # s3_client = boto3.client('s3')
         try:
-            response = self.s3_client.upload_file(
+            response = self.s3_client.upload_file( 
                 file_name, self.bucket_name, object_name)
         except ClientError as e:
             logging.error(e)
@@ -113,21 +113,23 @@ class S3:
     def download_file( self, object_name, image_type):
         # If S3 object_name was not specified, use file_name
         # print(file_name)
-        filename = f'/Users/heliaa/University/Semester7/Cloud/PRJ1/src/{object_name}{image_type}'
-        obj_path = f'{object_name}{image_type}'
-        object_name = os.path.basename(filename)
-        self.s3_client.download_file(self.bucket_name,obj_path , filename)
+        filename = f'/Users/heliaa/University/Semester7/Cloud/PRJ1/src/{object_name}{image_type}' # path to save the image
+        obj_path = f'{object_name}{image_type}'  # object name in s3
+        object_name = os.path.basename(filename) # get the file name
+        self.s3_client.download_file(self.bucket_name,obj_path , filename) # download the image
         # s3 = boto3.client('s3')
         # with open('FILE_NAME', 'wb') as f:
         #     s3.download_fileobj('BUCKET_NAME', 'OBJECT_NAME', f)
         return filename
-         
+    
+
+                
 
 
 
-# url = 'https://firstassignment.s3.ir-thr-at1.arvanstorage.com'
-# s3 = S3(url, 'test.txt')
+    # url = 'https://firstassignment.s3.ir-thr-at1.arvanstorage.com'
+    # s3 = S3(url, 'test.txt')
 
-# print(s3.upload_file('test.txt', url))
-# S3().upload_file('/Users/heliaa/University/Semester7/Cloud/PRJ1/src/13.jpg')
-# S3().download_file('13', '.jpg')
+    # print(s3.upload_file('test.txt', url))
+    # S3().upload_file('/Users/heliaa/University/Semester7/Cloud/PRJ1/src/13.jpg')
+    # S3().download_file('13', '.jpg')

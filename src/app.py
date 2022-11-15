@@ -14,6 +14,8 @@ app = Flask(__name__)
 def hello_world():
     return 'Hello, World!'
   
+  
+ 
 @app.route('/post_submit/', methods=['POST'])
 def post_submit():
   # Step 1
@@ -24,18 +26,19 @@ def post_submit():
   # print(image)
   
   # Step 2
-  image_type = image.filename.split('.')[-1]
+  image_type = '.'+image.filename.split('.')[-1]
   # image_type='.'+image_type
   id = db.insert(email=email, description=description, image_type=image_type)
-  # print(image_type)
+  
+  # print(id)
   # save image
-  obj_name = f'{id}.{image_type}'
+  obj_name = f'{id}{image_type}'
   image.save(obj_name)
   
   # Step 3
   # send event on queue
   S3().upload_file(obj_name)
-  os.remove(obj_name)
+  # os.remove(obj_name)
   
   # Step 4
   RabbitMQ_Send().send(message=obj_name)
@@ -64,11 +67,13 @@ def post_view():
     # res+= 
      
     image_type = row_state[6]
-    obj_format = f'{id}.{image_type}'
+    # print(image_type)
+    obj_format = f'{id}{image_type}'
     FILE_NAME = S3().download_file(object_name=id, image_type=image_type)
+    # print(FILE_NAME)
     imge =open(FILE_NAME, 'rb')
     
-    return send_file(imge, attachment_filename=obj_format, as_attachment=True)
+    return send_file(imge, mimetype='image/jpeg')
 
   
   

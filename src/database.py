@@ -64,7 +64,7 @@ class Database_class:
     def insert(self, email, description, image_type):
         mycursor = self.mydb.cursor(buffered=True)
         val = (description,email, image_type)
-        mycursor.execute("INSERT INTO advertisement (description, email, image_type, state) VALUES (%s, %s, %s, 0)", val)
+        mycursor.execute("INSERT INTO advertisement (description, email, image_type, state) VALUES (%s, %s, %s, 2)", val)
 
         self.mydb.commit()
 
@@ -169,4 +169,4 @@ class Database_class:
 # db.select_all()
 
 # db = Database_class()
-# print(Database_class().Number_of_rows())
+(Database_class().select_row_by_id(32))
