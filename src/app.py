@@ -88,7 +88,7 @@ def post_view():
   # Step 4
   else:
   # Step 5
-    res = f'description: {row_state[1]}'
+    res1 = f'description: {row_state[1]}'
     res2= f'category: {row_state[4]}'
     res3= f'state: {row_state[3]}'
     # res+= 
@@ -103,7 +103,7 @@ def post_view():
       encoded_string = base64.b64encode(image_file.read())
     
     # return {'image': encoded_string, 'data': res}
-    return {'image': encoded_string.decode('utf-8'),'data': [res,res2,res3]}
+    return {'image': encoded_string.decode('utf-8'),'data': [res1,res2,res3]}
 
   
   

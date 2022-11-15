@@ -100,8 +100,9 @@ class SendEmail_class:
                   "text": text})
 
     def send_response(self, email, subject, text):
-        response = self.send_simple_message(
-            email, subject, text) # send email
+        response = self.send_simple_message(email, 
+                                            subject, 
+                                            text) # send email
         # print(response.json())
         return response.json()
     
@@ -131,8 +132,9 @@ class S3:
     # Upload the file
         # s3_client = boto3.client('s3')
         try:
-            response = self.s3_client.upload_file( 
-                file_name, self.bucket_name, object_name)
+            response = self.s3_client.upload_file(file_name, 
+                                                  self.bucket_name,
+                                                  object_name)
         except ClientError as e:
             logging.error(e)
             return False
@@ -144,7 +146,11 @@ class S3:
         filename = f'/Users/heliaa/University/Semester7/Cloud/PRJ1/src/{object_name}{image_type}' # path to save the image
         obj_path = f'{object_name}{image_type}'  # object name in s3
         object_name = os.path.basename(filename) # get the file name
-        self.s3_client.download_file(self.bucket_name,obj_path , filename) # download the image
+        self.s3_client.download_file(self.bucket_name,
+                                     obj_path,
+                                     filename
+                                     ) # download the image
+        
         # s3 = boto3.client('s3')
         # with open('FILE_NAME', 'wb') as f:
         #     s3.download_fileobj('BUCKET_NAME', 'OBJECT_NAME', f)

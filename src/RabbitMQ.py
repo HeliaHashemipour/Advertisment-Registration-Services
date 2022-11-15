@@ -80,7 +80,11 @@ class RabbitMQ_Receive:
             # ch.basic_ack(delivery_tag=method.delivery_tag)
         
         self.channel.basic_consume(
-            queue=self.queue, on_message_callback=callback, auto_ack=True) # consume the message
+            queue=self.queue, 
+            on_message_callback=callback, 
+            auto_ack=True
+            ) # consume the message
+        
         print(' [*] Waiting for messages. To exit press CTRL+C')
         self.channel.start_consuming() # start consuming
 

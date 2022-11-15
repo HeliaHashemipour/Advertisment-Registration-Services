@@ -93,8 +93,7 @@ class Database_class:
     def select_table(self, table_name):
         mycursor = self.mydb.cursor(buffered=True)
 
-        sql = f"SELECT * FROM {table_name}"
-        mycursor.execute(sql)
+        mycursor.execute(f"SELECT * FROM {table_name}")
         self.mydb.commit()
         return mycursor.fetchall()
     
@@ -102,7 +101,7 @@ class Database_class:
         mycursor = self.mydb.cursor(buffered=True)
 
         # sql = f"SELECT * FROM advertisement WHERE id = {id}"
-        mycursor.execute( f"SELECT * FROM advertisement WHERE id = {id}")
+        mycursor.execute(f"SELECT * FROM advertisement WHERE id = {id}")
         self.mydb.commit()
         myresult=mycursor.fetchall()
         
@@ -123,8 +122,8 @@ class Database_class:
         mycursor = self.mydb.cursor(buffered=True)
         mycursor.execute("SELECT * FROM advertisement")
         return [i[0] for i in mycursor.description]
-
-    def alter_table(self):
+        
+    def alter_image_type(self):
         mycursor = self.mydb.cursor(buffered=True)
         mycursor.execute(f"ALTER TABLE advertisement ADD image_type varchar(10)")
         self.mydb.commit()
