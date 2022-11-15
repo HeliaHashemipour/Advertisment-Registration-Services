@@ -52,7 +52,7 @@ def post_submit():
   RabbitMQ_Send().send(message=obj_name)
   
   # Step 5
-  return f'Your post was submitted successfully with id <{id}>'
+  return f'Your Post was Submitted Successfully With id <{id}>'
 
 
 @app.route('/post_view/', methods=['POST'])
@@ -81,10 +81,10 @@ def post_view():
     '''
 
   if row_state[3]  == 0:
-    return 'Your post is still pending'
+    return 'Your Post Is Still Pending'
   # Step 3
   elif row_state[3] == 1: 
-    return f'Your post is with id <{id}> is rejected'
+    return f'Your Post Is With id <{id}> is rejected'
   # Step 4
   else:
   # Step 5

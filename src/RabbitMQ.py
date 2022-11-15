@@ -64,17 +64,17 @@ class RabbitMQ_Receive:
                 db.update(id=id,state=state,category=tag_name) # update the database
                 email = db.recieve_email(id=id)
                 SendEmail_class().send_simple_message(email=email,
-                                                      subject='Your post was approved',
-                                                      text=f'Your post with id <{id}> was approved') # send email
-                print('approved')
+                                                      subject='Your Post was Approved',
+                                                      text=f'Your Post With id <{id}> Was Approved') # send email
+                print('Approved')
             else:
                 state = 1
                 db.update(id=id,state=state,category=tag_name) # update the database
                 email = db.recieve_email(id=id) # update the database
                 SendEmail_class().send_simple_message(email=email,
-                                                      subject='Your post was rejected',
-                                                      text=f'Your post with id <{id}> was rejected') # send email
-                print('rejected')
+                                                      subject='Your Post Was Rejected',
+                                                      text=f'Your Post With id <{id}> Was Rejected') # send email
+                print('Rejected')
             # os.remove(file_name) # remove the image from the server
             print(" [x] Done")
             # ch.basic_ack(delivery_tag=method.delivery_tag)
