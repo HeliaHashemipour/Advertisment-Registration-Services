@@ -13,7 +13,7 @@ IMAGE_URL = 'https://wallpapercave.com/wp/wp3503654.jpg'
 
 DOMAIN = "sandbox946608aa307241419f0a093a1fdd500c.mailgun.org"
 API_KEY_EMAIL = "818378731d5374cd733ec4f5c5abf6c4-48c092ba-a51fd35d"
-EMAIL_ADDRESS = "heliahashemipour2@gmail.com"
+EMAIL_ADDRESS = "heliahashemipour@aut.ac.ir"
 TEXT = "Your ad has been accepted!"
 SUBJECT = "Cloud Computing HW1"
 
@@ -24,8 +24,8 @@ ROUTING_KEY = "hello"
 
 class ImageTagging_class:
     def __init__(self):
-        self.API_KEY_IMAGE = 'acc_f596c8c6fe207a0'
-        self.API_SECRET_IMAGE = 'b117d89284326d807458a878ceaa29e7'
+        self.API_KEY_IMAGE = 'acc_f101cd22c43c79c'
+        self.API_SECRET_IMAGE = 'cc6149264bd911e364a0a58c6b2127aa'
         # self.IMAGE_URL = IMAGE_URL
 
     def tagging_obj(self, image_path):
@@ -62,6 +62,7 @@ class ImageTagging_class:
         return tag_name, is_vehicle
 
 
+# checked
 # tag_name, confidence = ImageTagging_class(
 #     API_KEY_IMAGE, API_SECRET_IMAGE).tagging_obj(IMAGE_URL)
 # print(tag_name, confidence)
@@ -71,10 +72,12 @@ class ImageTagging_class:
 # tag_name, is_vehicle=ImageTagging_class().tagging_obj(image_path)
 # print(ImageTagging_class().tagging_obj(image_path))
 
+
+
 class SendEmail_class:
     def __init__(self):
-        self.DOMAIN = "sandbox946608aa307241419f0a093a1fdd500c.mailgun.org"
-        self.API_KEY_EMAIL = "818378731d5374cd733ec4f5c5abf6c4-48c092ba-a51fd35d"
+        self.DOMAIN = "sandbox2c66c8ba08704e23ba2ee5a08e0eb08a.mailgun.org"
+        self.API_KEY_EMAIL = "91d1efd9903f3dd0c627b3bc30c341e8-2de3d545-1257bc0e"
         # self.EMAIL_ADDRESS = EMAIL_ADDRESS
         # self.TEXT = TEXT
         # self.SUBJECT = SUBJECT
@@ -138,9 +141,10 @@ class S3:
 
 
 
-    # url = 'https://firstassignment.s3.ir-thr-at1.arvanstorage.com'
-    # s3 = S3(url, 'test.txt')
+# checked
 
-    # print(s3.upload_file('test.txt', url))
-    # S3().upload_file('/Users/heliaa/University/Semester7/Cloud/PRJ1/src/13.jpg')
-    # S3().download_file('13', '.jpg')
+# url = 'https://firstassignment.s3.ir-thr-at1.arvanstorage.com'
+# s3 = S3(url, 'test.txt')
+# print(s3.upload_file('test.txt', url))
+# S3().upload_file('/Users/heliaa/University/Semester7/Cloud/PRJ1/src/13.jpg')
+# S3().download_file('13', '.jpg')

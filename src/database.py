@@ -160,6 +160,9 @@ class Database_class:
         self.mydb.commit()
         print(mycursor.rowcount, "record(s) deleted")
 
+
+#checked 
+
 # db = Database_class(database=DATABASE,
 #                     host=HOST,
 #                     port=PORT,
@@ -169,4 +172,4 @@ class Database_class:
 # db.select_all()
 
 # db = Database_class()
-(Database_class().select_row_by_id(45))
+# (Database_class().select_row_by_id(45))

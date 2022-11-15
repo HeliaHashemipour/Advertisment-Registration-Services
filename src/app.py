@@ -5,6 +5,7 @@ import os
 from Proxies import ImageTagging_class, SendEmail_class, S3
 from RabbitMQ import RabbitMQ_Send
 from Database import Database_class
+import base64
 db = Database_class()
 
 
@@ -95,8 +96,10 @@ def post_view():
     FILE_NAME = S3().download_file(object_name=id, image_type=image_type)
     # print(FILE_NAME)
     imge =open(FILE_NAME, 'rb')
+    with open(FILE_NAME, 'rb') as imge:
+      encoded_string = base64.b64encode(imge.read())
     
-    return send_file(imge, mimetype='image/jpeg')
+    return {'image': encoded_string, 'data': res}
 
   
   

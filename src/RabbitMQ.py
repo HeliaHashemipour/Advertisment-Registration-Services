@@ -81,12 +81,13 @@ class RabbitMQ_Receive:
         self.channel.start_consuming() # start consuming
 
 
-# print(RabbitMQ_Receive().receive())
 
+# checked
+
+# print(RabbitMQ_Receive().receive())
 
 # message = "41.jpg"
 # (RabbitMQ_Send().send(message))
-
 
 # RabbitMQ_Receive().receive()
 
