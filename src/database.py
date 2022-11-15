@@ -5,18 +5,10 @@ import mysql.connector
     id is the id of the user
     description is the description of the user
     email is the email of the user
-    state is the state of the user
+    state is the  state of the user
     category is the category of the user
+    image_type is the image type of the user
 '''
-
-create_table_advertisement = '''CREATE TABLE advertisement (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    description VARCHAR(255),  
-    email VARCHAR(30),
-    state INT NOT NULL,
-    category VARCHAR(255) ,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    )'''
 
 
 # DATABASE = "defaultdb"
@@ -161,6 +153,8 @@ class Database_class:
         print(mycursor.rowcount, "record(s) deleted")
 
 
+
+
 #checked 
 
 # db = Database_class(database=DATABASE,
@@ -172,4 +166,13 @@ class Database_class:
 # db.select_all()
 
 # db = Database_class()
-# (Database_class().select_row_by_id(45))
+# (Database_class().select_row_by_id(49))
+
+# create_table_advertisement = '''CREATE TABLE advertisement (
+#     id INT AUTO_INCREMENT PRIMARY KEY,
+#     description VARCHAR(255),  
+#     email VARCHAR(30),
+#     state INT NOT NULL,
+#     category VARCHAR(255) ,
+#     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+#     )'''

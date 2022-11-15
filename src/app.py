@@ -1,3 +1,7 @@
+'''
+This is the main file for the application. It contains the main function
+'''
+
 from flask import Flask,request, send_file
 from flask_cors import CORS, cross_origin
 import os
@@ -14,7 +18,6 @@ app = Flask(__name__)
 @app.route('/')
 def hello_world():
     return 'Hello, World!'
-  
   
  
 @app.route('/post_submit/', methods=['POST'])
@@ -85,9 +88,9 @@ def post_view():
   # Step 4
   else:
   # Step 5
-    res = f'description: {row_state[1]}\n'
-    res+= f'category: {row_state[4]}\n'
-    res+= f'state: {row_state[3]}\n'
+    res = f'description: {row_state[1]}'
+    res2= f'category: {row_state[4]}'
+    res3= f'state: {row_state[3]}'
     # res+= 
      
     image_type = row_state[6]
@@ -95,11 +98,12 @@ def post_view():
     obj_format = f'{id}{image_type}'
     FILE_NAME = S3().download_file(object_name=id, image_type=image_type)
     # print(FILE_NAME)
-    imge =open(FILE_NAME, 'rb')
-    with open(FILE_NAME, 'rb') as imge:
-      encoded_string = base64.b64encode(imge.read())
+    # imge =open(FILE_NAME, 'rb')
+    with open(FILE_NAME, "rb") as image_file:
+      encoded_string = base64.b64encode(image_file.read())
     
-    return {'image': encoded_string, 'data': res}
+    # return {'image': encoded_string, 'data': res}
+    return {'image': encoded_string.decode('utf-8'),'data': [res,res2,res3]}
 
   
   

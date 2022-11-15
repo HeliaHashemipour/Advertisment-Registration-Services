@@ -4,6 +4,13 @@ import boto3
 from botocore.exceptions import ClientError
 import os
 
+
+'''
+This class is responsible for uploading the image to S3 and
+downloading the image from S3 to the local machine
+and tag the image using Imagga API
+and send the email using Mailgun API
+'''
 logging.basicConfig(level=logging.INFO)
 
 
@@ -11,11 +18,11 @@ API_KEY_IMAGE = 'acc_de10f3569b04ef6'
 API_SECRET_IMAGE = 'b1728fcb6d7f5a9ad0824c8e354e0817'
 IMAGE_URL = 'https://wallpapercave.com/wp/wp3503654.jpg'
 
-DOMAIN = "sandbox946608aa307241419f0a093a1fdd500c.mailgun.org"
-API_KEY_EMAIL = "818378731d5374cd733ec4f5c5abf6c4-48c092ba-a51fd35d"
+# DOMAIN = "sandbox946608aa307241419f0a093a1fdd500c.mailgun.org"
+# API_KEY_EMAIL = "818378731d5374cd733ec4f5c5abf6c4-48c092ba-a51fd35d"
 EMAIL_ADDRESS = "heliahashemipour@aut.ac.ir"
-TEXT = "Your ad has been accepted!"
-SUBJECT = "Cloud Computing HW1"
+# TEXT = "Your ad has been accepted!"
+# SUBJECT = "Cloud Computing HW1"
 
 AMQP_URL = "amqps://vyxkmseh:xuftvWWjW2mJkjicdYCyoYp6iZMDvlJb@albatross.rmq.cloudamqp.com/vyxkmseh"
 ROUTING_KEY = "hello"
@@ -62,13 +69,14 @@ class ImageTagging_class:
         return tag_name, is_vehicle
 
 
+
 # checked
 # tag_name, confidence = ImageTagging_class(
 #     API_KEY_IMAGE, API_SECRET_IMAGE).tagging_obj(IMAGE_URL)
 # print(tag_name, confidence)
 
 # print(image.taggin g_obj())
-# image_path = '/Users/heliaa/University/Semester7/Cloud/PRJ1/src/44.jpg'
+# image_path = '/Users/heliaa/University/Semester7/Cloud/PRJ1/src/49.jpg'
 # tag_name, is_vehicle=ImageTagging_class().tagging_obj(image_path)
 # print(ImageTagging_class().tagging_obj(image_path))
 
@@ -85,7 +93,7 @@ class SendEmail_class:
     def send_simple_message(self, email, subject, text):
         return requests.post(
             f"https://api.mailgun.net/v3/{self.DOMAIN}/messages",
-            auth=("api", API_KEY_EMAIL),
+            auth=("api", self.API_KEY_EMAIL),
             data={"from": f"<mailgun@{self.DOMAIN}>",
                   "to": [email],
                   "subject": subject,
@@ -96,6 +104,12 @@ class SendEmail_class:
             email, subject, text) # send email
         # print(response.json())
         return response.json()
+    
+    
+# checked
+
+# response = SendEmail_class().send_simple_message(EMAIL_ADDRESS, SUBJECT, TEXT)
+# print(response.json())
 
 
 class S3:
@@ -138,8 +152,6 @@ class S3:
     
 
                 
-
-
 
 # checked
 

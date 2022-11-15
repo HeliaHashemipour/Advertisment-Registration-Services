@@ -1,9 +1,8 @@
 from RabbitMQ import RabbitMQ_Send
-message = "48.jpg"
-(RabbitMQ_Send().send(message))
-
-
 import requests
+
+message = "51.jpg"
+RabbitMQ_Send().send(message)
 
 
 # DOMAIN = "sandbox2c66c8ba08704e23ba2ee5a08e0eb08a.mailgun.org"

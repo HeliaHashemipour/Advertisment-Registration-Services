@@ -3,9 +3,12 @@ import sys
 import os
 
 from Proxies import ImageTagging_class, SendEmail_class, S3
-
-
 from Database import Database_class
+
+'''
+This class is responsible for receiving messages from the queue and processing them 
+and sending the result to the database
+'''
 
 db = Database_class()
 class RabbitMQ_Send:
@@ -57,6 +60,7 @@ class RabbitMQ_Receive:
             
             if is_vehicle == True:
                 state = 2
+                print(tag_name)
                 db.update(id=id,state=state,category=tag_name) # update the database
                 email = db.recieve_email(id=id)
                 SendEmail_class().send_simple_message(email=email,

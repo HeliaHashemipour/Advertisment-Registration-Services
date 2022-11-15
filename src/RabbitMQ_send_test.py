@@ -1,5 +1,4 @@
 from RabbitMQ import RabbitMQ_Receive
-from Proxies import ImageTagging_class, SendEmail_class, S3
 
 
 RabbitMQ_Receive().receive()
