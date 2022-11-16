@@ -17,7 +17,7 @@ This service consists of two APIs.
 
 - API to receive ads:
 1. This API receives the ID of an ad. 
-2. If the ID related to an ad is not checked, in response, a message like "Your ad is in the review queue" will be sent to the user. 
+2. If the ID related to an ad is not checked, in response, a message like "Your ad is in the review queue" will be sent to the user. q
 3. If the ID related to an ad is rejected, a message like "Your ad was not approved" will be given in response. 
 4. If this ID corresponds to a verified ad, the information of this ad including text, image, category and status will be returned in the response.
 
