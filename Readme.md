@@ -38,15 +38,24 @@ I will name the cloud services used:
 
 
 I returned the message Your post was submitted successfully with id.
+<img width="838" alt="Screen Shot 1401-08-25 at 11 03 00" src="https://user-images.githubusercontent.com/71961438/202116098-cbb898c8-1f1e-4ef5-9bff-6e3d8010bce6.png">
 
 
 When the ad is approved and we have a vehicle, if we ask for the ID, the required data and response image will be given. If you pay attention, I encoded the image to base64, and postman does not show the image and gives base64, which can be converted to an image using online converters.
 
+<img width="856" alt="Screen Shot 1401-08-24 at 18 05 05" src="https://user-images.githubusercontent.com/71961438/202115713-7c2d3d50-3323-4eec-bcd9-9eca79745e12.png">
+
 
 For another code, the only thing I did was to take the photo in the form of a url, and in the output, the response that we get is the photo in the form of a url (the same url of our photo is in Abrarvan's dashboard) and the app.py and Proxies.py code has changed a bit. 
 
+<img width="794" alt="Screen Shot 1401-08-25 at 10 38 41" src="https://user-images.githubusercontent.com/71961438/202115898-4eaa60b0-79c3-4de9-9129-093a9d213f5d.png">
+
+
 When the ad is not approved (I gave a photo of a turbine), the response we have is as follows.
+
+<img width="843" alt="Screen Shot 1401-08-24 at 18 04 07" src="https://user-images.githubusercontent.com/71961438/202115814-3b90b011-688f-44a3-9367-ebd590a54f57.png">
 
 
 The received email is as follows.
 
+<img width="814" alt="Screen Shot 1401-08-25 at 10 46 18" src="https://user-images.githubusercontent.com/71961438/202115742-0b578a2a-9522-428c-83a4-35a6604440ab.png">
