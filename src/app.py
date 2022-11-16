@@ -4,7 +4,7 @@ This is the main file for the application. It contains the main function
 
 from flask import Flask,request, send_file
 from flask_cors import CORS, cross_origin
-import os
+import requests
 
 from Proxies import ImageTagging_class, SendEmail_class, S3
 from RabbitMQ import RabbitMQ_Send
@@ -94,16 +94,27 @@ def post_view():
     # res+= 
      
     image_type = row_state[6]
-    # print(image_type)
+    
+    url = S3().create_presigned_url(object_name=f'{id}{image_type}')
+    if url is not None:
+        response = requests.get(url)
+        # print(image_type)
     obj_format = f'{id}{image_type}'
     FILE_NAME = S3().download_file(object_name=id, image_type=image_type)
     # print(FILE_NAME)
     # imge =open(FILE_NAME, 'rb')
-    with open(FILE_NAME, "rb") as image_file:
-      encoded_string = base64.b64encode(image_file.read())
+    # with open(FILE_NAME, "rb") as image_file:
+    #   encoded_string = base64.b64encode(image_file.read())
     
     # return {'image': encoded_string, 'data': res}
-    return {'image': encoded_string.decode('utf-8'),'data': [res1,res2,res3]}
+    # return {'image': encoded_string.decode('utf-8'),'data': [res1,res2,res3]}
+    if url is not None:
+      response = requests.get(url)
+    
+    return {'data': [res1,res2,res3] , 'image_url': url}
+
+    
+    
 
   
   

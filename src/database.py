@@ -165,7 +165,7 @@ class Database_class:
 # db.select_all()
 
 # db = Database_class()
-# (Database_class().select_row_by_id(49))
+# (Database_class().select_row_by_id(55))
 
 # create_table_advertisement = '''CREATE TABLE advertisement (
 #     id INT AUTO_INCREMENT PRIMARY KEY,

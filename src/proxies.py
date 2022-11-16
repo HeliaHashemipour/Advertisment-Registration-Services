@@ -36,17 +36,17 @@ class ImageTagging_class:
         # self.IMAGE_URL = IMAGE_URL
 
     def tagging_obj(self, image_path):
-        # IMAGE_URL = 'https://wallpapercave.com/wp/wp3503654.jpg'
-        print(image_path)
+        IMAGE_URL = 'https://docs.imagga.com/static/images/docs/sample/japan-605234_1280.jpg'
+        # print(image_path)
         # image_pathh = '/Users/heliaa/University/Semester7/Cloud/PRJ1/src/'+image_path 
-        response = requests.post(
-            'https://api.imagga.com/v2/tags',
-            auth=(self.API_KEY_IMAGE, self.API_SECRET_IMAGE),
-            files={'image': open(image_path, 'rb')}
-            )
-        # response = requests.get(
-        #     'https://api.imagga.com/v2/tags?image_url=%s' % IMAGE_URL,
-        #     auth=(API_KEY_IMAGE, API_SECRET_IMAGE))
+        # response = requests.post(
+        #     'https://api.imagga.com/v2/tags',
+        #     auth=(self.API_KEY_IMAGE, self.API_SECRET_IMAGE),
+        #     files={'image': open(image_path, 'rb')}
+        #     )
+        response = requests.get(
+            'https://api.imagga.com/v2/tags?image_url=%s' % IMAGE_URL,
+            auth=(self.API_KEY_IMAGE, self.API_SECRET_IMAGE))
 
 
         # print(response.json())
@@ -156,6 +156,31 @@ class S3:
         #     s3.download_fileobj('BUCKET_NAME', 'OBJECT_NAME', f)
         return filename
     
+    def create_presigned_url(self, object_name):
+        """Generate a presigned URL to share an S3 object
+
+        :param bucket_name: string
+        :param object_name: string
+        :param expiration: Time in seconds for the presigned URL to remain valid
+        :return: Presigned URL as string. If error, returns None.
+        """
+
+        # Generate a presigned URL for the S3 object
+        try:
+            response = self.s3_client.generate_presigned_url('get_object',
+                                                        Params={'Bucket': self.bucket_name,
+                                                                'Key': object_name})
+        except ClientError as e:
+            logging.error(e)
+            return None
+
+        # The response contains the presigned URL
+        return response
+    
+    def accessing(self):
+        s3 = boto3.resource('s3')
+        for bucket in s3.buckets.all():
+            print(bucket.name)
 
 
 # checked
@@ -164,4 +189,7 @@ class S3:
 # s3 = S3(url, 'test.txt')
 # print(s3.upload_file('test.txt', url))
 # S3().upload_file('/Users/heliaa/University/Semester7/Cloud/PRJ1/src/13.jpg')
-# S3().download_file('13', '.jpg')
+# print(S3().create_presigned_url('53.jpg'))
+
+
+# S3().accessing()
