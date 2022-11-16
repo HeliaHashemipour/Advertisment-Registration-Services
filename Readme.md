@@ -30,3 +30,23 @@ The task of this service is to read ads from the RabbitMQ queue, process them an
 
 <img width="852" alt="1" src="https://user-images.githubusercontent.com/71961438/201540370-806d9d6b-5b7b-44bd-8b1a-1b33537e5d87.png">
 
+I will name the cloud services used:
+• For the cloud host, Abrarvan is used.
+• I used Aiven for the database (mySQL).
+• Other services were also used according to the agenda. Like RabbitMQ, Imagga and mailgun
+• For the object storage, Abrarvan was also used, in which I made a bucket.
+
+
+I returned the message Your post was submitted successfully with id.
+
+
+When the ad is approved and we have a vehicle, if we ask for the ID, the required data and response image will be given. If you pay attention, I encoded the image to base64, and postman does not show the image and gives base64, which can be converted to an image using online converters.
+
+
+For another code, the only thing I did was to take the photo in the form of a url, and in the output, the response that we get is the photo in the form of a url (the same url of our photo is in Abrarvan's dashboard) and the app.py and Proxies.py code has changed a bit. 
+
+When the ad is not approved (I gave a photo of a turbine), the response we have is as follows.
+
+
+The received email is as follows.
+
