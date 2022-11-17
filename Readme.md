@@ -17,7 +17,7 @@ This service consists of two APIs.
 
 - API to receive ads:
 1. This API receives the ID of an ad. 
-2. If the ID related to an ad is not checked, in response, a message like "Your ad is in the review queue" will be sent to the user. q
+2. If the ID related to an ad is not checked, in response, a message like "Your ad is in the review queue" will be sent to the user. 
 3. If the ID related to an ad is rejected, a message like "Your ad was not approved" will be given in response. 
 4. If this ID corresponds to a verified ad, the information of this ad including text, image, category and status will be returned in the response.
 
@@ -25,37 +25,37 @@ Second service
 The task of this service is to read ads from the RabbitMQ queue, process them and store the result in the database. 
 1. This service is connected to the RabbitMQ queue and listens for new messages. Each message corresponds to a registered advertisement. 
 2. Each message read from the queue contains an advertisement ID. With this ID, the ad photo is received from the object storage. 
-3. The ad photo is sent to photo tagging service 4 for processing. From the response of the tagging service, the first tag is selected as the ad category. Put this category in the category column of the database. 
+3. The ad photo is sent to photo tagging service for processing. From the response of the tagging service, the first tag is selected as the ad category. Put this category in the category column of the database. 
 4. By using the email sending service, an email is sent to the user to inform the user of the status (approval or rejection) of his ad.
 
 <img width="852" alt="1" src="https://user-images.githubusercontent.com/71961438/201540370-806d9d6b-5b7b-44bd-8b1a-1b33537e5d87.png">
 
 I will name the cloud services used:
-• For the cloud host, Abrarvan is used.
-• I used Aiven for the database (mySQL).
-• Other services were also used according to the agenda. Like RabbitMQ, Imagga and mailgun
-• For the object storage, Abrarvan was also used, in which I made a bucket.
+- For the cloud host, Abrarvan is used.
+- I used Aiven for the database (mySQL).
+- Other services were also used according to the agenda. Like RabbitMQ, Imagga and mailgun
+- For the object storage, Abrarvan was also used, in which I made a bucket.
 
 
 I returned the message Your post was submitted successfully with id.
 <img width="838" alt="Screen Shot 1401-08-25 at 11 03 00" src="https://user-images.githubusercontent.com/71961438/202116098-cbb898c8-1f1e-4ef5-9bff-6e3d8010bce6.png">
 
 
-• When the ad is approved and we have a vehicle, if we ask for the ID, the required data and response image will be given. If you pay attention, I encoded the image to base64, and postman does not show the image and gives base64, which can be converted to an image using online converters.
+- When the ad is approved and we have a vehicle, if we ask for the ID, the required data and response image will be given. If you pay attention, I encoded the image to base64, and postman does not show the image and gives base64, which can be converted to an image using online converters.
 
 <img width="856" alt="Screen Shot 1401-08-24 at 18 05 05" src="https://user-images.githubusercontent.com/71961438/202115713-7c2d3d50-3323-4eec-bcd9-9eca79745e12.png">
 
 
-• For another code, the only thing I did was to take the photo in the form of a url, and in the output, the response that we get is the photo in the form of a url (the same url of our photo is in Abrarvan's dashboard) and the app.py and Proxies.py code has changed a bit. 
+- For another code, the only thing I did was to take the photo in the form of a url, and in the output, the response that we get is the photo in the form of a url (the same url of our photo is in Abrarvan's dashboard) and the app.py and Proxies.py code has changed a bit. 
 
 <img width="794" alt="Screen Shot 1401-08-25 at 10 38 41" src="https://user-images.githubusercontent.com/71961438/202115898-4eaa60b0-79c3-4de9-9129-093a9d213f5d.png">
 
 
-• When the ad is not approved (I gave a photo of a turbine), the response we have is as follows.
+- When the ad is not approved (I gave a photo of a turbine), the response we have is as follows.
 
 <img width="843" alt="Screen Shot 1401-08-24 at 18 04 07" src="https://user-images.githubusercontent.com/71961438/202115814-3b90b011-688f-44a3-9367-ebd590a54f57.png">
 
 
-• The received email is as follows.
+- The received email is as follows.
 
 <img width="814" alt="Screen Shot 1401-08-25 at 10 46 18" src="https://user-images.githubusercontent.com/71961438/202115742-0b578a2a-9522-428c-83a4-35a6604440ab.png">
