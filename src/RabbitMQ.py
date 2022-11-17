@@ -13,7 +13,7 @@ and sending the result to the database
 db = Database_class()
 class RabbitMQ_Send:
     def __init__(self):
-        self.AMQP_URL = "amqps://vyxkmseh:xuftvWWjW2mJkjicdYCyoYp6iZMDvlJb@albatross.rmq.cloudamqp.com/vyxkmseh"
+        self.AMQP_URL =
         self.ROUTING_KEY = "hello"
         self.connection = pika.BlockingConnection(
             pika.URLParameters(self.AMQP_URL))
@@ -29,7 +29,7 @@ class RabbitMQ_Send:
 
 class RabbitMQ_Receive:
     def __init__(self):
-        self.AMQP_URL = "amqps://vyxkmseh:xuftvWWjW2mJkjicdYCyoYp6iZMDvlJb@albatross.rmq.cloudamqp.com/vyxkmseh"
+        self.AMQP_URL = 
         self.connection = pika.BlockingConnection(
             pika.URLParameters(self.AMQP_URL))
         self.channel = self.connection.channel()

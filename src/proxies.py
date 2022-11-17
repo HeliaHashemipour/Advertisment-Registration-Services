@@ -14,25 +14,25 @@ and send the email using Mailgun API
 logging.basicConfig(level=logging.INFO)
 
 
-API_KEY_IMAGE = 'acc_de10f3569b04ef6'
-API_SECRET_IMAGE = 'b1728fcb6d7f5a9ad0824c8e354e0817'
-IMAGE_URL = 'https://wallpapercave.com/wp/wp3503654.jpg'
+API_KEY_IMAGE = 
+API_SECRET_IMAGE = 
+IMAGE_URL = 
 
 # DOMAIN = "sandbox946608aa307241419f0a093a1fdd500c.mailgun.org"
 # API_KEY_EMAIL = "818378731d5374cd733ec4f5c5abf6c4-48c092ba-a51fd35d"
-EMAIL_ADDRESS = "heliahashemipour@aut.ac.ir"
+EMAIL_ADDRESS = 
 # TEXT = "Your ad has been accepted!"
 # SUBJECT = "Cloud Computing HW1"
 
-AMQP_URL = "amqps://vyxkmseh:xuftvWWjW2mJkjicdYCyoYp6iZMDvlJb@albatross.rmq.cloudamqp.com/vyxkmseh"
+AMQP_URL = 
 ROUTING_KEY = "hello"
 # message = 1
 
 
 class ImageTagging_class:
     def __init__(self):
-        self.API_KEY_IMAGE = 'acc_f101cd22c43c79c'
-        self.API_SECRET_IMAGE = 'cc6149264bd911e364a0a58c6b2127aa'
+        self.API_KEY_IMAGE = 
+        self.API_SECRET_IMAGE = 
         # self.IMAGE_URL = IMAGE_URL
 
     def tagging_obj(self, image_path):
@@ -84,8 +84,8 @@ class ImageTagging_class:
 
 class SendEmail_class:
     def __init__(self):
-        self.DOMAIN = "sandbox2c66c8ba08704e23ba2ee5a08e0eb08a.mailgun.org"
-        self.API_KEY_EMAIL = "91d1efd9903f3dd0c627b3bc30c341e8-2de3d545-1257bc0e"
+        self.DOMAIN =
+        self.API_KEY_EMAIL = 
         # self.EMAIL_ADDRESS = EMAIL_ADDRESS
         # self.TEXT = TEXT
         # self.SUBJECT = SUBJECT
@@ -118,9 +118,9 @@ class S3:
         self.bucket_name = 'hw1cloudcomputing'
         self.s3_client = boto3.client(
             's3',
-            endpoint_url='https://hw1cloudcomputing.s3.ir-thr-at1.arvanstorage.com',
-            aws_access_key_id='6d04e8b0-645e-4a26-b9e0-128f830a36ce',
-            aws_secret_access_key='e2b5741fc6c88d35c6f6c2dc0cdcedfb84d994fa'
+            endpoint_url=,
+            aws_access_key_id=,
+            aws_secret_access_key=
         )
 
     def upload_file(self, file_name, object_name=None):
