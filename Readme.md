@@ -45,7 +45,6 @@ For running this project, you have to first set up a flask server.
 * installing other required packages
 
 ```bash
-$ pip install postgres
 $ pip install pika
 $ pip install boto3
 $ pip install logging
