@@ -32,13 +32,14 @@ The task of this service is to read ads from the RabbitMQ queue, process them an
 <img width="852" alt="1" src="https://user-images.githubusercontent.com/71961438/201540370-806d9d6b-5b7b-44bd-8b1a-1b33537e5d87.png">
 
 
+## Installation
+
 * Installing Flask
 
 ```bash
 $ pip install Flask
 ```
 
-## Installation
 
 For running this project, you have to first set up a flask server.
 * installing other required packages
