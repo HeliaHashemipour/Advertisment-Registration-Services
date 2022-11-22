@@ -27,10 +27,10 @@ class Database_class:
 
         self.mydb = mysql.connector.connect(
             database="defaultdb",
-            host="mysql-285d668a-heliahashemipour2-3713.aivencloud.com",
+            host="test",
             port=24306,
             user="avnadmin",
-            password="AVNS_Dw1z9L45JL5OCEl7X1G"
+            password="test"
         )
 
         # print(mydb)
