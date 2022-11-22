@@ -1,6 +1,7 @@
 # Advertisment Registration Services
 Cloud Computing's first assignment
 
+## Introduction
 In this project, you implement an ad registration service. The purpose of this exercise is to get to know and work with cloud services; You use these services for different parts of your service, such as "database", "object-based storage", "image processing" and "email sending".
 Advertisements include all types of vehicles. Each user can send an advertisement of his vehicle in the form of a combination of text and image descriptions, along with his email address. Your service checks the registered ad in the first step. Each ad is placed in its corresponding category according to the type of vehicle in its image (car, motorcycle, bicycle, etc.). If the image contains
 If there are no vehicles, the ad will be rejected. Finally, after processing the ad, the user will be notified of the result of his ad registration by sending an email. In this email, if the ad is approved, a link to the ad along with its category will be placed. If the ad is rejected, this will be mentioned in the email.
@@ -28,12 +29,18 @@ The task of this service is to read ads from the RabbitMQ queue, process them an
 3. The ad photo is sent to photo tagging service for processing. From the response of the tagging service, the first tag is selected as the ad category. Put this category in the category column of the database. 
 4. By using the email sending service, an email is sent to the user to inform the user of the status (approval or rejection) of his ad.
 
+<img width="852" alt="1" src="https://user-images.githubusercontent.com/71961438/201540370-806d9d6b-5b7b-44bd-8b1a-1b33537e5d87.png">
+
+
 * Installing Flask
 
 ```bash
 $ pip install Flask
 ```
 
+## Installation
+
+For running this project, you have to first set up a flask server.
 * installing other required packages
 
 ```bash
@@ -46,17 +53,14 @@ $ pip install requests
 
 ```
 
-
-
-<img width="852" alt="1" src="https://user-images.githubusercontent.com/71961438/201540370-806d9d6b-5b7b-44bd-8b1a-1b33537e5d87.png">
-
+## Cloud Services
 I will name the cloud services used:
 - For the cloud host, Abrarvan is used.
 - I used Aiven for the database (mySQL).
 - Other services were also used according to the agenda. Like RabbitMQ, Imagga and mailgun
 - For the object storage, Abrarvan was also used, in which I made a bucket.
 
-
+## Code
 I returned the message Your post was submitted successfully with id.
 <img width="838" alt="Screen Shot 1401-08-25 at 11 03 00" src="https://user-images.githubusercontent.com/71961438/202116098-cbb898c8-1f1e-4ef5-9bff-6e3d8010bce6.png">
 
@@ -67,8 +71,7 @@ I returned the message Your post was submitted successfully with id.
 
 
 - For another code, the only thing I did was to take the photo in the form of a url, and in the output, the response that we get is the photo in the form of a url (the same url of our photo is in Abrarvan's dashboard) and the app.py and Proxies.py code has changed a bit. 
-
-/Users/heliaa/Screenshots/Screen Shot 1401-09-01 at 10.31.47.png
+<img width="806" alt="Screen Shot 1401-09-01 at 10 31 47" src="https://user-images.githubusercontent.com/71961438/203248305-9e6e1489-0277-4542-9861-94404f44cad3.png">
 
 
 - When the ad is not approved (I gave a photo of a turbine), the response we have is as follows.
