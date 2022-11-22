@@ -27,10 +27,10 @@ class Database_class:
 
         self.mydb = mysql.connector.connect(
             database="defaultdb",
-            host=,
-            port=,
+            host="mysql-285d668a-heliahashemipour2-3713.aivencloud.com",
+            port=24306,
             user="avnadmin",
-            password=
+            password="AVNS_Dw1z9L45JL5OCEl7X1G"
         )
 
         # print(mydb)
@@ -165,7 +165,7 @@ class Database_class:
 # db.select_all()
 
 # db = Database_class()
-# (Database_class().select_row_by_id(55))
+# (Database_class().select_row_by_id(49))
 
 # create_table_advertisement = '''CREATE TABLE advertisement (
 #     id INT AUTO_INCREMENT PRIMARY KEY,

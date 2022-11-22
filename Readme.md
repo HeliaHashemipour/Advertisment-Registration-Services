@@ -28,6 +28,26 @@ The task of this service is to read ads from the RabbitMQ queue, process them an
 3. The ad photo is sent to photo tagging service for processing. From the response of the tagging service, the first tag is selected as the ad category. Put this category in the category column of the database. 
 4. By using the email sending service, an email is sent to the user to inform the user of the status (approval or rejection) of his ad.
 
+* Installing Flask
+
+```bash
+$ pip install Flask
+```
+
+* installing other required packages
+
+```bash
+$ pip install postgres
+$ pip install pika
+$ pip install boto3
+$ pip install logging
+$ pip install botocore
+$ pip install requests
+
+```
+
+
+
 <img width="852" alt="1" src="https://user-images.githubusercontent.com/71961438/201540370-806d9d6b-5b7b-44bd-8b1a-1b33537e5d87.png">
 
 I will name the cloud services used:
@@ -48,7 +68,7 @@ I returned the message Your post was submitted successfully with id.
 
 - For another code, the only thing I did was to take the photo in the form of a url, and in the output, the response that we get is the photo in the form of a url (the same url of our photo is in Abrarvan's dashboard) and the app.py and Proxies.py code has changed a bit. 
 
-<img width="794" alt="Screen Shot 1401-08-25 at 10 38 41" src="https://user-images.githubusercontent.com/71961438/202115898-4eaa60b0-79c3-4de9-9129-093a9d213f5d.png">
+/Users/heliaa/Screenshots/Screen Shot 1401-09-01 at 10.31.47.png
 
 
 - When the ad is not approved (I gave a photo of a turbine), the response we have is as follows.
