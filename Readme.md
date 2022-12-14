@@ -1,5 +1,10 @@
 # Advertisment Registration Services
-Cloud Computing's first assignment
+
+This repository is about the first assignment of the cloud computing course.
+
+> Instructor: [Dr. S. A. Javadi](https://scholar.google.com/citations?user=Va7RTUsAAAAJ&hl=en)
+
+> Semester: Fall 2022
 
 ## Introduction
 In this project, you implement an ad registration service. The purpose of this exercise is to get to know and work with cloud services; You use these services for different parts of your service, such as "database", "object-based storage", "image processing" and "email sending".
