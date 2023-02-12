@@ -7,7 +7,7 @@ This repository is about the first assignment of the cloud computing course.
 > Semester: Fall 2022
 
 ## Introduction
-In this project, you implement an ad registration service. The purpose of this exercise is to get to know and work with cloud services; You use these services for different parts of your service, such as "database", "object-based storage", "image processing" and "email sending".
+In this project, I implement an ad registration service. The purpose of this exercise is to get to know and work with cloud services; You use these services for different parts of your service, such as "database", "object-based storage", "image processing" and "email sending".
 Advertisements include all types of vehicles. Each user can send an advertisement of his vehicle in the form of a combination of text and image descriptions, along with his email address. Your service checks the registered ad in the first step. Each ad is placed in its corresponding category according to the type of vehicle in its image (car, motorcycle, bicycle, etc.). If the image contains
 If there are no vehicles, the ad will be rejected. Finally, after processing the ad, the user will be notified of the result of his ad registration by sending an email. In this email, if the ad is approved, a link to the ad along with its category will be placed. If the ad is rejected, this will be mentioned in the email.
 
